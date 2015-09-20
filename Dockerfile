@@ -20,4 +20,10 @@ RUN echo "deb     http://repos.sensuapp.org/apt sensu main" > /etc/apt/sources.l
 RUN apt-get update -y
 RUN apt-get -y install sensu
 
-EXPOSE [5672, 4567, 6379]
+# Config
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD config.json /etc/sensu/
+
+EXPOSE 5672 4567 6379
+
+CMD ["/usr/bin/supervisord"]
