@@ -13,9 +13,9 @@ dependencies:
 
 test:
   override:
-    - docker run -d -p 6379:6379 -p 5672:5672 -p 4567:4567 pryz/sensu; sleep 10
-    - (printf "PING\r\n"; sleep 1) | nc localhost 6379
-    - curl --retry 10 --retry-delay 5 -v http://localhost:4567/info
+    - docker run -d -p 16379:6379 -p 14567:4567 pryz/sensu; sleep 10
+    - (printf "PING\r\n"; sleep 1) | nc localhost 16379
+    - curl --retry 10 --retry-delay 5 -v http://localhost:14567/info
 
 deployment:
   hub: 
